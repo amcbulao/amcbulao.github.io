@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+          body {
+            text-align: center;
+            background-color: #4682B4;
+              color: white;
+              font-family: Arial;
+          }
+        </style>
+      </head>
+      <h1>The nth Factorial</h1>
+      <label for="number">Input a value for n:</label>
+      <p><input type="number" id="number" name="number"></p>
+      <button onclick="factorial()">Compute</button>
+    <p></p>
+    <h2 id="title"></h2>
+      <p style="color:black;border:groove;width:250px;height:20px;padding:10px;background-color:white;margin:auto;" id="output"></p>
+
+      <h1>The Sum of the first n Numbers</h1>
+      <label for="first">Input a value for n:</label>
+      <p><input type="number" id="first" name="first"></p>
+      <button onclick="firstn()">Compute</button>
+    <p></p>
+    <h2 id="title1"></h2>
+      <p style="color:black;border:groove;width:250px;height:20px;padding:10px;background-color:white;margin:auto;" id="output1"></p>
+
+      <h1>The Average of the first n Numbers</h1>
+      <label for="avg">Input a value for n:</label>
+      <p><input type="number" id="avg" name="avg"></p>
+      <button onclick="average()">Compute</button>
+    <p></p>
+    <h2 id="title2"></h2>
+      <p style="color:black;border:groove;width:250px;height:20px;padding:10px;background-color:white;margin:auto;" id="output2"></p>
+      
+      <p>
+        <a href="index.html">Back to Home Page</a>
+     </p>
+
+      <script>
+          function factorial(){
+            var number;
+            number=document.getElementById("number").value;
+            var counter, limit;
+            limit=1;
+            counter=1;
+            while(counter<=number){
+                limit=limit*counter;
+                counter++;
+            }
+            document.getElementById("output").innerHTML = limit;
+            document.getElementById("title").innerHTML=number+" Factorial is:";
+          }
+          function firstn(){
+              var first;
+              first=document.getElementById("first").value;
+              var counter=1,sum=0;
+              do{
+                  sum=sum+counter;
+                  counter++;
+              }
+              while(counter<=first);
+              document.getElementById("output1").innerHTML = sum;
+              document.getElementById("title1").innerHTML="The sum of the first "+first+" numbers is:";
+          }
+          function average(){
+            var avg1;
+              avg1=document.getElementById("avg").value;
+              var sum=0;
+              var aveg=0;
+              for(var counter=1;counter<=avg1;counter++){
+                  sum=counter+sum;
+              }
+              aveg=sum/avg1;
+              document.getElementById("output2").innerHTML = aveg;
+              document.getElementById("title2").innerHTML="The average of the first "+avg1+" numbers is:";
+          }
+      </script>
+</html>
