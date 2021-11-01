@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <style>
+      body {
+        text-align: center;
+        background-color: #4682B4;
+	      color: white;
+	      font-family: Arial;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Fahrenheit to Celsius</h1>
+    
+      <p><input type="number" id="fahrenheit" name="fahrenheit">°F</p>
+      <button onclick="ftoc()">Compute</button>
+    <p></p>
+      <p style="color:black;border:groove;width:250px;height:20px;padding:10px;background-color:white;margin:auto;" id="output"></p>
+
+      <h1>Celsius to Fahrenheit</h1>
+    
+      <p><input type="number" id="celsius" name="celsius">°C</p>
+      <button onclick="ctof()">Compute</button>
+    <p></p>
+      <p style="color:black;border:groove;width:250px;height:20px;padding:10px;background-color:white;margin:auto;" id="output1"></p>
+    
+     <h1>Meters to Feet</h1>
+    
+      <p><input type="number" id="meter" name="meter"> meters</p>
+      <button onclick="mtoft()">Compute</button>
+    <p></p>
+      <p style="color:black;border:groove;width:250px;height:20px;padding:10px;background-color:white;margin:auto;" id="output2"></p>
+    
+    <h1>Feet to Meters</h1>
+    
+      <p><input type="number" id="feet" name="feet"> feet</p>
+      <button onclick="fttom()">Compute</button>
+    <p></p>
+      <p style="color:black;border:groove;width:250px;height:20px;padding:10px;background-color:white;margin:auto;" id="output3"></p>
+    
+    <p>
+       <a href="index.html">Back to Home Page</a>
+    </p>
+<script>
+  function ftoc(){
+    var fahrenheit;
+    var c;
+    fahrenheit=document.getElementById("fahrenheit").value;
+    c=(5/9) * (fahrenheit-32);
+    document.getElementById("output").innerHTML = c+" °C";
+  }
+   function ctof(){
+    var celsius;
+    var f;
+    celsius=document.getElementById("celsius").value;
+    f=celsius*9/5+32.00;
+    document.getElementById("output1").innerHTML = f+" °F";
+  }
+   function mtoft(){
+    var meter;
+    var ft;
+    meter=document.getElementById("meter").value;
+    ft=meter*3.281;
+    document.getElementById("output2").innerHTML = ft+" feet";
+  }
+   function fttom(){
+    var feet;
+    var m;
+    feet=document.getElementById("feet").value;
+    m=feet/3.281;
+    document.getElementById("output3").innerHTML = m+" meters";
+  }
+  
+</script>
+  </body>
+</html>
