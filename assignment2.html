@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <style>
+      body {
+        text-align: center;
+        background-color: #4682B4;
+	      color: white;
+	      font-family: Arial;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Income Tax Calculator</h1>
+    <h2><label for="income">Income</label></h2>
+    <p>Php <input type="number" id="income" name="income"></p>
+      <button onclick="computetax()">Compute</button>
+    <p></p>
+    <h2>Income Tax Payable</h2>
+      <p style="color:black;border:groove;width:250px;height:20px;padding:10px;background-color:white;margin:auto;" id="output"></p>
+      <p>
+        <a href="index.html">Back to Home Page</a>
+     </p>
+      <script>
+          function computetax(){
+            var income;
+            var incometax=0.00;
+        
+        income=document.getElementById("income").value;
+        
+        if (income <= 250000.00001){
+          incometax = 0.00;
+        }
+        else if(income > 250000.00001 && income <= 400000.00001){
+          incometax = (taxableincome-250000)*0.2;
+        }
+        else if(income > 400000.00001 && income <= 800000.00001){
+          incometax = (income-400000.00001)*0.25+30000;
+        }
+        else if(income > 800000.00001 && income <= 2000000.00001){
+          incometax = (income-800000.00001)*0.30+130000;
+        }
+        else {
+          incometax = (income-8000000.00001)*0.35+2410000;
+        }
+        document.getElementById("output").innerHTML = "Php "+incometax;
+          }
+      </script>
+  </body>
+</html>
