@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html>
+    <style>
+        body {
+          text-align: center;
+          background-color: #4682B4;
+            color: white;
+            font-family: Arial;
+        }
+        table, th, td {
+            border: 1px solid black;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        table{
+            width: 90%;
+        }
+        th{
+            height: 50px;
+        }
+        td{
+            height:40px;
+        }
+      </style>
+      <body onload="initialtable()">
+          <h1>Simple Payroll System</h1>
+          <p>
+              <label for="name">Employee Name: </label>
+              <input type="text" id="name" name="name">
+
+              <label for="days">Days Worked: </label>
+              <input type="number" id="days" name="days">
+
+              <label for="rate">Daily Rate: </label>
+              <input type="number" id="rate" name="rate">
+              
+              <label for="deduc">Deduction Amount: </label>
+              <input type="number" id="deduc" name="deduc">
+          </p>
+
+          <button onclick="add()">Add to Payroll</button>
+          <p>
+            <label for="numberEmployees">Total Number of Employees: </label>
+            <input type="number" id="numberEmployees" name="numberEmployees" readonly>
+            <button onclick="clearlist()">Clear list</button>
+            <label for="remove">Remove Employee (No.):</label>
+            <input type="number" id="remove" name="remove">
+            <button onclick="remove()">Remove from List</button>
+          </p>
+
+          <p></p>
+    
+          <p id="list"></p>
+
+          <p>
+            <a href="index.html">Back to Home Page</a>
+         </p>
+         <script>
+             function initialtable(){
+                var list=[];
+                document.getElementById("numberEmployees").value=list.length;
+                document.getElementById("list").innerHTML="";
+             }
+             function clearlist(){
+                 var clearall;
+                 clearall=confirm("Clear entire list of employees?");
+                 if(clearall){
+                     initialtable();
+                 }
+             }
+             function add(){
+                 var newemployee = {
+                     "employee": "1",
+                     "day": "1",
+                     "rate": 0,
+                     "deduc": 0,
+                     "grosspay": function grosspay(){
+                         return Math.round(this.day*this.rate);
+                     },
+                     "netpay": function netpay(){
+                         return Math.round(this.grosspay()-this.deduc);
+                     }
+                 };
+                 newemployee.employee=document.getElementById("name").value;
+                 newemployee.day=document.getElementById("days").value;
+                 newemployee.rate=document.getElementById("rate").value;
+                 newemployee.deduc=document.getElementById("deduc").value;
+
+                 console.log(newemployee.employee);
+                 console.log(newemployee.day);
+                 console.log(newemployee.rate);
+                 console.log(newemployee.deduc);
+
+                 list.push(newemployee);
+                 console.log(list.length);
+                 document.getElementById("numberEmployees").value=list.length;
+
+                 showlist();
+             }
+             function remove(){
+                 var toremove;
+                 var employeeNo;
+
+                 employeeNo = document.getElementById("remove").value;
+                 toremove = confirm("Delete this employee from the list?");
+                 if(toremove){
+                     list.splice(employeeNo-1,1);
+                     document.getElementById("numberEmployees").value=list.length;
+                     showlist();
+                 }
+             }
+             function showlist(){
+                 var i,l,listtext,empnumber;
+                 var theader,tbody,tb;
+
+                 theader = "<thead>";
+                    theader+="<tr>";
+                        theader+='<th style="width:5%">No.</th>';
+                        theader+='<th style="width: 20%">Employee Name</th>';
+                        theader+='<th style="width: 20%">Employee Name</th>';
+                        theader+="<th>Daily Rate</th>";
+                        theader+="<th>Gross Pay</th>";
+                        theader+='<th style="width: 15%">Deduction Amount</th>';
+                        theader+="<th>Net Pay</th>";
+                        theader+="</tr>";
+                        theader+="</thead>";
+
+                        l = list.length;
+                        for(i=0,listtext="",tbody='';i<l;i++){
+                            empnumber = i+1;
+                            tbody+="<tr>"
+                                +'<td>'+empnumber+'</td>'
+                                +'<td>'+list[i].employee+'</td>'
+                                +'<td>'+list[i].day+'</td>'
+                                +'<td>'+list[i].rate+'</td>'
+                                +'<td>'+list[i].grosspay()+'</td>'
+                                +'<td>'+list[i].deduc+'</td>'
+                                +'<td>'+list[i].netpay()+'</td>'
+                                +"</tr>";
+                        }
+                        console.log(theader+tbody);
+                        document.getElementById("list").innerHTML=
+                        "<table>"+theader+tbody+"</table";
+             }
+             var list=[];
+          
+         </script>
+      </body>
+</html>
